@@ -1,38 +1,78 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.homePageWrapper{
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  color:azure;
+  height: 100vh;
+}
+.formWrapper{
+  background: rgb(0, 90, 95);
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  padding: 10px;
+}
+.image{
+  width: 300px;
+  height: auto;
+}
+footer{
+  position: fixed;
+  bottom: 0;
+}
+footer a{
+  color: rgb(97, 147, 223);
+}
+.inputGroup{
+  display: flex;
+  flex-direction: column;
+}
+.mainLabel{
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+.inputBox{
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: bold;
+
+}
+.btnJoinbtn{
+  background-color: rgb(97, 147, 223);
+  border: none;
+  padding: 7px;
+  border-radius: 7px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  width: 150px;
+  text-align: center; /* Ensures text inside the button is centered */
+  margin: 0 auto; /* Centers the button horizontally */
+  display: block;/* Ensures the button behaves as a block-level element */
+}
+
+.btnJoinbtn:hover{
+  color:rgb(0, 90, 95); ;
+}
+
+.createNewBtn{
+  padding-top: 10px;
+  color: black;
+}
+
+.createinfo{
+  padding-top: 12px;
+}
+.createinfo a:hover{
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+footer a:hover{
+  color: white;
 }
