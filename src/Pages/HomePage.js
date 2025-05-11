@@ -65,7 +65,7 @@ const Home = () => {
           ></input>
           <button className="btnJoinbtn" onClick={joinRoom}>Join</button>
           <span className="createinfo">
-            If you don't have an invite then create &nbsp;
+            If you don't have an invitation then create &nbsp;
             <a onClick={createNewRoom} href="" className="createNewBtn">New Room</a>
           </span>
         </div>

@@ -1,3 +1,4 @@
+/*Home Page*/
 .homePageWrapper{
   display: flex;
   align-items: center;
@@ -21,19 +22,19 @@ footer{
   bottom: 0;
 }
 footer a{
-  color: rgb(97, 147, 223);
+  color: rgb(58, 110, 188);
 }
 .inputGroup{
   display: flex;
   flex-direction: column;
 }
 .mainLabel{
-  margin-bottom: 20px;
-  margin-top: 0;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 .inputBox{
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 17px;
   outline: none;
   border: none;
   margin-bottom: 15px;
@@ -41,11 +42,12 @@ footer a{
   font-weight: bold;
 
 }
+.leaveBtn,
 .btnJoinbtn{
-  background-color: rgb(97, 147, 223);
+  background-color: rgb(58, 110, 188);
   border: none;
   padding: 7px;
-  border-radius: 7px;
+  border-radius: 17px;
   font-size: 17px;
   cursor: pointer;
   transition: 0.3s;
@@ -59,7 +61,8 @@ footer a{
 }
 
 .btnJoinbtn:hover{
-  color:rgb(0, 90, 95); ;
+  background-color: white;
+  color: rgb(58, 110, 188);
 }
 
 .createNewBtn{
@@ -70,9 +73,92 @@ footer a{
 .createinfo{
   padding-top: 12px;
 }
+
+footer a:hover,
 .createinfo a:hover{
   color: white;
 }
-footer a:hover{
+
+/* Editor Page  */
+.mainWrap{
+  display: grid;
+  grid-template-columns: 230px 1fr;
+}
+.aside{
+  background:rgb(0, 90, 95) ;
+  padding: 16px;
   color: white;
+  display: flex;
+  flex-direction: column;
+
+}
+.asideInner{
+  flex:1;
+}
+
+.clientsList{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap:20px;
+
+}
+.client{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: bold;
+}
+.userName{
+  margin-top: 10px;
+}
+.logo{
+  border-bottom: 2px dashed white;
+  padding-bottom:10px;
+}
+.logoImage{
+  height:60px;
+  padding-left: 15px;
+}
+
+.leaveBtn{
+  margin-bottom: 20px;
+  margin-top: 20px;
+  width: 175px;
+}
+.leaveBtn:hover{
+  background-color: white;
+  color: rgb(58, 110, 188);
+}
+.copyBtn{
+  margin-bottom: 10px;
+  background-color: white;
+  color:rgb(58, 110, 188);
+  border: none;
+  padding: 7px;
+  border-radius: 17px;
+  font-size: 17px;
+  width: 175px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center; /* Ensures text inside the button is centered */
+  margin: 0 auto 10px;/*auto centers the item automatically*/
+  display: block;/* Ensures the button behaves as a block-level element */
+}
+
+.copyBtn:Hover{
+  color: white;
+  background-color: rgb(58, 110, 188);
+}
+.CodeMirror {
+    min-height: calc(100vh - 20px);
+    font-size: 15px;
+    line-height: 1.6;
+    padding-top: 20px;
+}
+.editorWrap {
+  height: 100vh;
+  overflow: hidden; /* Prevent scrolling in the parent container */
 }

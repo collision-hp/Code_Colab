@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import Client from "../Components/Client";
-
-const Editor = () => {
+import Editor from "../Components/Editor";
+const EditorPage = () => {
   //state
   const [clients, setClients] = useState([
     { socketId: 1, username: "King" },
-    { socketId: 2, username: "Kohli" },
+    { socketId: 2, username: "Rohit" },
+    { socketId: 3, username:"Gill"}
   ]);
   return (
     <div className="mainWrap">
-      //left nav bar
       <div className="aside">
         <div className="asideInner">
           <div className="logo">
-            <img src="/cclogo.png" alt="logo"></img>
+            <img className="logoImage" src="/cclogo.png" alt="logo"></img>
           </div>
           <h3>Connected</h3>
           <div className="clientsList">
@@ -26,8 +26,10 @@ const Editor = () => {
         <button className="btn copyBtn">Copy Room ID</button>
         <button className="btn leaveBtn">Leave Room</button>
       </div>
-      <div className="editorWrap"></div>
+      <div className="editorWrap">
+        <Editor/>
+      </div>
     </div>
   );
 };
-export default Editor;
+export default EditorPage;
