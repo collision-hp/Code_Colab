@@ -25,14 +25,14 @@ const Home = () => {
       return;
     }
     //redirect
-    navigate('/editor/${roomId}',{
+    navigate(`/editor/${roomId}`,{
       state:{
         username,
       },
     });
   };
   const handleInputEnter=(e)=>{
-    if(e.code=="Enter"){
+    if(e.code==="Enter"){
       joinRoom();
     }
   }

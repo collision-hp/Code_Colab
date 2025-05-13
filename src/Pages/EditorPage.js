@@ -1,13 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
+// import toast from "react-hot-toast";
 import Client from "../Components/Client";
 import Editor from "../Components/Editor";
+import { initSocket } from "../socket";
+import { useLocation,useNavigate,Navigate,useParams } from "react-router-dom";
+import ACTIONS from "../Actions";
 const EditorPage = () => {
   //state
+  const socketRef=useRef(null);
+  const location=useLocation();
+  const {roomId}=useParams();
+  // const reactNavigator=useNavigate();
+  useEffect(()=>{
+    const init=async()=>{
+      socketRef.current=await initSocket();
+
+      socketRef.current.emit(ACTIONS.JOIN,{
+        roomId,
+        username:location.state?.username, //?-checks if username property is not there then it doesn't display an error
+      });
+    };
+    init();
+  },[]);
+
   const [clients, setClients] = useState([
     { socketId: 1, username: "King" },
     { socketId: 2, username: "Rohit" },
     { socketId: 3, username:"Gill"}
   ]);
+  if(!location.state){
+    return <Navigate to="/"/>
+  }
+
   return (
     <div className="mainWrap">
       <div className="aside">
