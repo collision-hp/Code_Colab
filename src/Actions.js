@@ -7,4 +7,4 @@ const ACTIONS={
     SYNC_CODE:'sync-code',
     LEAVE:'leave',
 };
-export default ACTIONS;
+module.exports = ACTIONS;

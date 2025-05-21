@@ -14,7 +14,7 @@ import {
 const EditorPage = () => {
   //state
   const socketRef = useRef(null);
-  // const codeRef = useRef(null);
+  const codeRef = useRef(null);
   const location = useLocation();
   const { roomId } = useParams();
   const reactNavigator = useNavigate();
@@ -44,16 +44,6 @@ const EditorPage = () => {
       socketRef.current.on("connect", () => {
         console.log("✅ Socket connected:", socketRef.current.id);
 
-        // Emit join only after connection
-        socketRef.current.emit(ACTIONS.JOIN, {
-          roomId,
-          username: location.state?.username,
-        });
-        console.log(
-          "🔍 Username from location.state:",
-          location.state?.username
-        );
-
         // Listen for new user joined
         socketRef.current.on(
           ACTIONS.JOINED,
@@ -65,6 +55,19 @@ const EditorPage = () => {
             }
             setClients(clients);
           }
+        );
+        console.log("Emitting ACTIONS.JOIN", {
+          roomId,
+          username: location.state?.username,
+          eventName: ACTIONS.JOIN,
+        });
+        socketRef.current.emit(ACTIONS.JOIN, {
+          roomId,
+          username: location.state?.username,
+        });
+        console.log(
+          "🔍 Username from location.state:",
+          location.state?.username
         );
 
         // Listen for user disconnected
@@ -94,6 +97,8 @@ const EditorPage = () => {
     return <Navigate to="/" />;
   }
 
+  console.log("ACTIONS loaded on client:", ACTIONS);
+
   return (
     <div className="mainWrap">
       <div className="aside">
@@ -112,7 +117,13 @@ const EditorPage = () => {
         <button className="btn leaveBtn">Leave Room</button>
       </div>
       <div className="editorWrap">
-        <Editor />
+        <Editor
+          socketRef={socketRef}
+          roomId={roomId}
+          onCodeChange={(code) => {
+            codeRef.current = code;
+          }}
+        />
       </div>
     </div>
   );

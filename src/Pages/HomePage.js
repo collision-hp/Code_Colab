@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate} from "react-router-dom";
 
 const Home = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [roomId, setRoomId] = useState("");
-  const [username,setUsername]=useState("");
-
-  //pop up 
+  const [username, setUsername] = useState("");
+  
   const createNewRoom = (e) => {
     e.preventDefault();
     const id = uuidv4();
@@ -19,20 +17,20 @@ const Home = () => {
   };
 
   //verficstion that all the creditals are entered
-  const joinRoom=()=>{
-    if(!roomId || !username){
+  const joinRoom = () => {
+    if (!roomId || !username) {
       toast.error('Room Id and Usermane is required');
       return;
     }
     //redirect
-    navigate(`/editor/${roomId}`,{
-      state:{
+    navigate(`/editor/${roomId}`, {
+      state: {
         username,
       },
     });
   };
-  const handleInputEnter=(e)=>{
-    if(e.code==="Enter"){
+  const handleInputEnter = (e) => {
+    if (e.code === "Enter") {
       joinRoom();
     }
   }
@@ -58,7 +56,7 @@ const Home = () => {
             type="text"
             className="inputBox"
             placeholder="User-Name"
-            onChange={(e)=>setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
             value={username}
             //enter press 
             onKeyUp={handleInputEnter} //user defined

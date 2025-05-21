@@ -5,6 +5,8 @@ const path = require("path");
 const { Server } = require("socket.io");
 const ACTIONS = require("./src/Actions");
 
+console.log("ACTIONS loaded on server:", ACTIONS);
+
 const server = http.createServer(app);
 const io = new Server(server);
 
@@ -31,11 +33,13 @@ io.on("connection", (socket) => {
 
   // When a user joins a room
   socket.on(ACTIONS.JOIN, ({ roomId, username }) => {
+    console.log("ACTIONS.JOIN on server:", ACTIONS.JOIN);
+    console.log("ACTIONS.JOIN received:", { roomId, username });
     userSocketMap[socket.id] = username;
     socket.join(roomId);
 
     const clients = getAllConnectedClients(roomId);
-
+    console.log("Emitting JOINED to room:", roomId, clients);
     //Notify everyone in the room
     io.to(roomId).emit(ACTIONS.JOINED, {
       clients,
