@@ -40,44 +40,42 @@ const EditorPage = () => {
         reactNavigator("/");
       }
 
+      // Listen for new user joined
+      socketRef.current.on(
+        ACTIONS.JOINED,
+        ({ clients, username, socketId }) => {
+          console.log("JOINED event received:", clients, username, socketId);
+          if (username !== location.state?.username) {
+            toast.success(`${username} joined the room.`);
+            console.log(`${username} joined`);
+          }
+          setClients(clients);
+          socketRef.current.emit(ACTIONS.SYNC_CODE, {
+            code: codeRef.current,
+            socketId,
+          });
+        }
+      );
+      // Listen for user disconnected
+      socketRef.current.on(ACTIONS.DISCONNECTED, ({ socketId, username }) => {
+        toast.success(`${username} left the room.`);
+        setClients((prev) =>
+          prev.filter((client) => client.socketId !== socketId)
+        );
+      });
+      console.log("Emitting ACTIONS.JOIN", {
+        roomId,
+        username: location.state?.username,
+        eventName: ACTIONS.JOIN,
+      });
       // Wait for actual connection before emitting JOIN and adding listeners
       socketRef.current.on("connect", () => {
-        console.log("✅ Socket connected:", socketRef.current.id);
-
-        // Listen for new user joined
-        socketRef.current.on(
-          ACTIONS.JOINED,
-          ({ clients, username, socketId }) => {
-            console.log("JOINED event received:", clients, username, socketId);
-            if (username !== location.state?.username) {
-              toast.success(`${username} joined the room.`);
-              console.log(`${username} joined`);
-            }
-            setClients(clients);
-          }
-        );
-        console.log("Emitting ACTIONS.JOIN", {
-          roomId,
-          username: location.state?.username,
-          eventName: ACTIONS.JOIN,
-        });
         socketRef.current.emit(ACTIONS.JOIN, {
           roomId,
           username: location.state?.username,
         });
-        console.log(
-          "🔍 Username from location.state:",
-          location.state?.username
-        );
-
-        // Listen for user disconnected
-        socketRef.current.on(ACTIONS.DISCONNECTED, ({ socketId, username }) => {
-          toast.success(`${username} left the room.`);
-          setClients((prev) =>
-            prev.filter((client) => client.socketId !== socketId)
-          );
-        });
       });
+      console.log("🔍 Username from location.state:", location.state?.username);
     };
 
     init();
@@ -91,8 +89,19 @@ const EditorPage = () => {
         socketRef.current.off(ACTIONS.DISCONNECTED);
       }
     };
-  }, [roomId, location.state?.username, reactNavigator]);
-
+  }, []);
+  async function copyRoomId() {
+    try {
+      await navigator.clipboard.writeText(roomId);
+      toast.success("Room ID copied to clipboard");
+    } catch (err) {
+      toast.error("Unable to copy Room ID");
+      console.error(err);
+    }
+  }
+  function leaveRoom() {
+    reactNavigator("/");
+  }
   if (!location.state) {
     return <Navigate to="/" />;
   }
@@ -113,8 +122,12 @@ const EditorPage = () => {
             ))}
           </div>
         </div>
-        <button className="btn copyBtn">Copy Room ID</button>
-        <button className="btn leaveBtn">Leave Room</button>
+        <button className="btn copyBtn" onClick={copyRoomId}>
+          Copy Room ID
+        </button>
+        <button className="btn leaveBtn" onClick={leaveRoom}>
+          Leave Room
+        </button>
       </div>
       <div className="editorWrap">
         <Editor
