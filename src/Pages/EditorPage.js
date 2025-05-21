@@ -89,7 +89,7 @@ const EditorPage = () => {
         socketRef.current.off(ACTIONS.DISCONNECTED);
       }
     };
-  }, []);
+  }, [location.state?.username, reactNavigator, roomId]);
   async function copyRoomId() {
     try {
       await navigator.clipboard.writeText(roomId);
