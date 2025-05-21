@@ -1,25 +1,25 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import toast from "react-hot-toast";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
   const [roomId, setRoomId] = useState("");
   const [username, setUsername] = useState("");
-  
+
   const createNewRoom = (e) => {
     e.preventDefault();
     const id = uuidv4();
     setRoomId(id);
-    toast.success('New Room Created');
+    toast.success("New Room Created");
     console.log(id);
   };
 
   //verficstion that all the creditals are entered
   const joinRoom = () => {
     if (!roomId || !username) {
-      toast.error('Room Id and Usermane is required');
+      toast.error("Room Id and Usermane is required");
       return;
     }
     //redirect
@@ -33,7 +33,7 @@ const Home = () => {
     if (e.code === "Enter") {
       joinRoom();
     }
-  }
+  };
 
   return (
     <div className="homePageWrapper">
@@ -47,8 +47,7 @@ const Home = () => {
             placeholder="Room ID"
             onChange={(e) => setRoomId(e.target.value)}
             value={roomId}
-
-            //enter press 
+            //enter press
             onKeyUp={handleInputEnter} //user defined
           ></input>
 
@@ -58,13 +57,17 @@ const Home = () => {
             placeholder="User-Name"
             onChange={(e) => setUsername(e.target.value)}
             value={username}
-            //enter press 
+            //enter press
             onKeyUp={handleInputEnter} //user defined
           ></input>
-          <button className="btnJoinbtn" onClick={joinRoom}>Join</button>
+          <button className="btnJoinbtn" onClick={joinRoom}>
+            Join
+          </button>
           <span className="createinfo">
             If you don't have an invitation then create &nbsp;
-            <a onClick={createNewRoom} href="#" className="createNewBtn">New Room</a>
+            <button
+              onClick={createNewRoom}
+              className="createNewBtn">New Room</button>
           </span>
         </div>
       </div>
