@@ -58,6 +58,7 @@ footer a{
   text-align: center; /* Ensures text inside the button is centered */
   margin: 0 auto; /* Centers the button horizontally */
   display: block;/* Ensures the button behaves as a block-level element */
+  box-shadow: 0 3px 5px rgba(8, 0, 255, 0.293); 
 }
 
 .btnJoinbtn:hover{
@@ -65,24 +66,29 @@ footer a{
   color: rgb(58, 110, 188);
 }
 
-.createNewBtn{
-  background: "none";
-  border: "none";
-  background-color: none;
-  padding: 0;
-  margin: 0;
-  text-Decoration: "underline";
-  cursor: "pointer";
-  color: black;
+.createNewBtn{      
+  border-radius: 10px;
+  padding-bottom: 3px;          /* Text color */
+  cursor: pointer;          /* Pointer cursor on hover */
+  font: inherit; 
+  color: white;
+  background-color: rgb(12, 120, 122);
+  border: none;
+  font-weight: bold;
+  box-shadow: 0 3px 5px rgba(1, 0, 17, 0.293); 
 }
-
+.createNewBtn:hover{
+  background-color: white;
+  color:rgb(12, 120, 122);
+  box-shadow: none;
+}
 .createinfo{
   padding-top: 12px;
+  
 }
 
-footer a:hover,
-.createinfo button:hover{
-  color: rgb(170, 204, 17);
+footer a:hover{
+  color: rgb(179, 206, 61);
 }
 
 /* Editor Page  */
@@ -152,6 +158,7 @@ footer a:hover,
   text-align: center; /* Ensures text inside the button is centered */
   margin: 0 auto 10px;/*auto centers the item automatically*/
   display: block;/* Ensures the button behaves as a block-level element */
+  box-shadow: 0 3px 5px rgba(1, 0, 17, 0.293);
 }
 
 .copyBtn:Hover{

@@ -73,7 +73,7 @@ const Home = () => {
       </div>
       <footer>
         Built by{" "}
-        <a href="https://github.com/collision-hp">Satyabrata Champati</a>{" "}
+        <a href="https://github.com/collision-hp">collision-hp</a>{" "}
       </footer>
     </div>
   );
