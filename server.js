@@ -14,6 +14,13 @@ app.use(express.static("build"));
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
+io = require("socket.io")(server, {
+  cors: {
+    origin: "https://code2colab.netlify.app/", // or "*" for testing (not recommended for production)
+    methods: ["GET", "POST"]
+  }
+});
+
 
 // In-memory map of socketId -> username
 const userSocketMap = {};
